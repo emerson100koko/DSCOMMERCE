@@ -11,7 +11,7 @@ import java.util.*;
 @Entity
 @Table(name = "tb_user")
 
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,8 @@ public class User implements UserDetails{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-    public User(){
+
+    public User() {
     }
 
     public User(Long id, String name, String email, String phone, LocalDate birthDate, String password) {
@@ -82,6 +83,19 @@ public class User implements UserDetails{
         this.birthDate = birthDate;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -114,16 +128,5 @@ public class User implements UserDetails{
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-    public Set<Role> getRoles() {
-        return roles;
     }
 }
