@@ -20,10 +20,6 @@ public class ProductDTO {
     private String description;
     @Positive(message = "O preço deve ser positivo")
     private Double price;
-    private String imgUrl;
-    @NotEmpty(message = "Deve ter pelo menos uma categoria!!")
-    private List<CategoryDTO> categories = new ArrayList<>();
-
     public ProductDTO(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
@@ -31,6 +27,10 @@ public class ProductDTO {
         this.price = price;
         this.imgUrl = imgUrl;
     }
+
+    private String imgUrl;
+    @NotEmpty(message = "Deve ter pelo menos uma categoria!!")
+    private List<CategoryDTO> categories = new ArrayList<>();
 
     public ProductDTO(Product entity) {
         id = entity.getId();
